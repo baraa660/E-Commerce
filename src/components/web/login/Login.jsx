@@ -1,68 +1,55 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Input from '../../pages/Input.jsx';
 import { useFormik } from 'formik';
-import{registerSchema} from '../validation/Validate.js'
+import{loginSchema} from '../validation/Validate.js'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import './Register.css'
-import { useNavigate } from 'react-router-dom';
-function Register() {
+import './Login.css'
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/User.jsx';
+function Login() {
 
-  const navigate = useNavigate();
+  let {setUserToken} = useContext(UserContext);
+
+    const navigate = useNavigate();
 
   let [errorBack,setErrorBack]=useState('');
 
   const initialValues={
-    userName: '',
     email: '',
     password: '',
-    image:''
   };
-
-  const handleFieldChange= (event)=>{
-    
-    formik.setFieldValue('image',event.target.files[0]);
-  }
-
 
   const onSubmit=async users => {
     
     
     setErrorBack('');
-    console.log(errorBack);
     
-
-    const formData = new FormData();
-    formData.append('userName',users.userName);  
-    formData.append('email',users.email);      
-    formData.append('password',users.password);    
-    formData.append('image',users.image);  
-
     try{
 
-    const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`,formData)
+    const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signin`,users)
 
-
-  if(data.message=='success'){
-
-    formik.resetForm();
-
-    toast.success('account created successfully, please verify your email to login', {
-      position: "bottom-center",
-      autoClose: false,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
     
-  }
 
-  navigate("/login");
+    if(data.message=='success'){
+        localStorage.setItem("userToken",data.token);
+        
+        setUserToken(data.token);
+        
 
-
+        toast.success('Login Successfully', {
+            position: "top-center",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+            navigate("/");
+    }
+   
 }catch(error){
   
   setErrorBack(error.response.data.message, () => {
@@ -77,21 +64,13 @@ function Register() {
   const formik = useFormik({
     initialValues,//shortcut of : initialValues:initialValues,
     onSubmit,  //shortcut of : onSubmit:onSubmit,
-    validationSchema:registerSchema,
+    validationSchema:loginSchema,
   });
 
   const inputs = [
+    
     {
-      class:"fadeIn second",//css 
-
-      id: 'name',
-      type: 'Text',
-      name: 'userName',
-      title: 'user name',
-      value: formik.values.userName,
-    },
-    {
-      class:`fadeIn third  ${errorBack ? 'error-input' : ''}`, //css
+      class:`fadeIn second  `, //css
 
       id: 'email',
       type: 'email',
@@ -100,7 +79,7 @@ function Register() {
       value: formik.values.email,
     },
     {
-      class:"fadeIn fourth",//css
+      class:"fadeIn third",//css
 
       id: 'password',
       type: 'password',
@@ -108,15 +87,7 @@ function Register() {
       title: 'user password',
       value: formik.values.password,
     },
-    {
-      class:"fadeIn fifth",//css
-
-      id: 'image',
-      type: 'file',
-      name: 'image',
-      title: 'user image',
-      onChange: handleFieldChange
-    },
+    
   ];
 
 
@@ -124,7 +95,7 @@ function Register() {
     <Input
       errors={formik.errors}
       onblur={formik.handleBlur}
-      onchange={input.onChange || formik.handleChange}
+      onchange={formik.handleChange}
       type={input.type}
       id={input.id}
       name={input.name}
@@ -162,15 +133,17 @@ function Register() {
     {/* Tabs Titles */}
     {/* Icon */}
     <div className="text-center m-4 fadeIn first ">
-      <h2 className='text-center '>Sign UP</h2>
+      <h2 className='text-center '>Log In</h2>
     </div>
     {/* Login Form */}
-    <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
+    <form onSubmit={formik.handleSubmit} >
     {renderInputs}
     {errorBack&&<p className='text text-danger text-center mt-3'>{errorBack}</p>}
-      <div className="text-center m-3"><input type="submit" className="fadeIn sixth" disabled={!formik.isValid} value="Submit" /></div>
+    <div className="text-center m-3"><input type="submit" className="fadeIn fourth" disabled={!formik.isValid} value="Login" /></div>
 
     </form>
+
+    <div className='m-4 '><Link className='text-primary' to='/sendcode'>Forgot password?</Link></div>
     
   </div>
 </div>
@@ -179,5 +152,5 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
 

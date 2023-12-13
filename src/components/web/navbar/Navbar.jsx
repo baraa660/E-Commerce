@@ -1,9 +1,37 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useContext} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/User.jsx';
+import { cartcontext } from '../context/Cart.jsx';
+import { useQuery } from 'react-query';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 export default function Navbar() {
+
+  let {userToken,setUserToken,userData,setUserData}= useContext(UserContext);
+
+  const { getCardContext} = useContext(cartcontext);
+
+  const getCard = async () => {
+    const res = getCardContext();
+    
+    return res;
+  };
+
+  const { data} = useQuery("cart", getCard);
+
+
+  const navigate=useNavigate();
+
+  const logout=()=>{
+    localStorage.removeItem("userToken");
+    setUserToken(null);
+    setUserData(null);
+    navigate("/");
+  }
   return (
     <>
+    
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container">
       <a className="navbar-brand" href="#">B-shop</a>
@@ -14,7 +42,7 @@ export default function Navbar() {
         <ul className="navbar-nav m-auto mb-2 mb-lg-0">
          
           <li className="nav-item">
-            <a className="nav-link" href="#">Home</a>
+            <Link className="nav-link" to="/">Home</Link>
           </li>
 
 
@@ -25,19 +53,35 @@ export default function Navbar() {
 
           <li className="nav-item">
           <a className="nav-link" href="#">Products</a>
+
         </li>
+
+        {userToken&&<li className="nav-item">
+          <Link className="nav-link" to='/cart'>Cart / {data?.count}</Link>
+        </li>}
        
        
         </ul>
         <ul className="navbar-nav">
         <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown
+          {userData!=null?userData.userName:'Account'}
         </a>
         <ul className="dropdown-menu ">
+
+          {!userToken?<>
           <li><Link className="dropdown-item" to="/register">register</Link></li>
           <li><hr className="dropdown-divider" /></li>
-          <li><a className="dropdown-item" href="#">login</a></li>
+          <li><Link className="dropdown-item" to="/login">login</Link></li>
+          
+          </> :
+          <>
+          <li><Link className="dropdown-item" to="/profile">profile</Link></li>
+          <li><hr className="dropdown-divider" /></li>
+          <li><Link className="dropdown-item text-danger" onClick={logout}>logout</Link></li>
+          </>
+          }
+          
         </ul>
       </li>
         </ul>
