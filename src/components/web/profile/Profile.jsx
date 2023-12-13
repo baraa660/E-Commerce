@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/User.jsx';
-import './profile.css'
+
 
 function Profile() {
 
