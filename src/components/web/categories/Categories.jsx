@@ -6,7 +6,7 @@ import Loader from '../../Loader.jsx';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination,Autoplay } from 'swiper/modules';
 
-import './categories.css'
+import './Categories.css'
 
 // Import Swiper styles
 import 'swiper/css';

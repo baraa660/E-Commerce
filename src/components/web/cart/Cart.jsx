@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import './cart.css'
+import './Cart.css'
 import { cartcontext } from '../context/Cart.jsx'
 import { useQuery } from 'react-query';
 import Loader from '../../Loader.jsx';
