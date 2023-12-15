@@ -82,10 +82,11 @@ const Checkout = () => {
 
   const inputs = [
     {
+      class:'w-50',
       id: 'couponName',
       type: 'Text',
       name: 'couponName',
-      title: 'Coupon Name',
+      title: 'Coupon Code',
       value: formik.values.email,
     },
     { 
@@ -162,6 +163,7 @@ const Checkout = () => {
       </div>
       <div className={styles['input-container']}>
       <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
+        <p className='ms-4 mt-2 text-secondary'>HAVE A COUPON ?</p>
       {renderInputs}
       {errorBack&&<p className='text text-danger ms-5 mt-3'>{errorBack}</p>}
       <button type='submit' className={`mt-3 ${styles['proceed-button']}`}>Proceed to Payment</button>

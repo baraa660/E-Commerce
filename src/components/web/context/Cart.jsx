@@ -55,6 +55,7 @@ export function CartContextProvider({children}){
     
 
     const removeItemContext= async(productId)=>{
+        console.log(productId)
         try{
             const token = localStorage.getItem("userToken")
             const {data}= await axios.patch(`${import.meta.env.VITE_API_URL}/cart/removeItem`,{productId}
@@ -69,7 +70,68 @@ export function CartContextProvider({children}){
 
     }
 
-    return <cartcontext.Provider value={{addToCartContext,getCardContext,removeItemContext}}>
+    const increaseQuantityContext= async(productId)=>{
+        
+        try{
+            const token =  localStorage.getItem("userToken");
+            const {data} = await axios.patch(`${import.meta.env.VITE_API_URL}/cart/incraseQuantity`,
+            {productId},
+            {
+                headers:{Authorization:`Tariq__${token}`}
+            })
+
+            return data
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    const decreaseQuantityContext= async(productId)=>{
+        
+        try{
+            const token =  localStorage.getItem("userToken");
+            const {data} = await axios.patch(`${import.meta.env.VITE_API_URL}/cart/decraseQuantity`,
+            {productId},
+            {
+                headers:{Authorization:`Tariq__${token}`}
+            })
+
+            return data
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    const clearCartContext= async(productId)=>{
+        
+        try{
+            const token =  localStorage.getItem("userToken");
+            const {data} = await axios.patch(`${import.meta.env.VITE_API_URL}/cart/clear`,{},
+            {
+                headers:{Authorization:`Tariq__${token}`}
+            }
+            )
+            toast.success('Cart Cleared Successully!', {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+            return data
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    return <cartcontext.Provider value={{addToCartContext,getCardContext,removeItemContext,
+    increaseQuantityContext,decreaseQuantityContext,clearCartContext}}>
         {children}
     </cartcontext.Provider>
 }

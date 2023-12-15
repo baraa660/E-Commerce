@@ -10,7 +10,8 @@ import { Link } from 'react-router-dom';
 
 function Cart() {
 
-    const { getCardContext , removeItemContext } = useContext(cartcontext);
+    const {getCardContext,removeItemContext,increaseQuantityContext,
+      decreaseQuantityContext,clearCartContext} = useContext(cartcontext);
 
     const getCard = async () => {
       const res = getCardContext();
@@ -24,6 +25,21 @@ function Cart() {
     }
 
     const { data,isLoading} = useQuery("cart", getCard);
+
+    const increaseQuantity = async(productId)=>{
+      const res = increaseQuantityContext(productId);
+      return res;
+    }
+
+    const decreaseQuantity = async(productId)=>{
+      const res = decreaseQuantityContext(productId);
+      return res;
+    }
+
+    const clearCart = async()=>{
+      const res = clearCartContext();
+      return res;
+    }
     
 
     if (isLoading) {
@@ -40,6 +56,8 @@ function Cart() {
         return total + calculateTotalPrice(product.quantity, product.details.price);
       }, 0);
     };
+
+
   return (
     <div className="cart">
       <div className="container">
@@ -90,7 +108,7 @@ function Cart() {
               </div>
             </div>
             <div className="quantity">
-              <button>
+              <button onClick={ ()=> decreaseQuantity(product.details._id)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={16}
@@ -108,7 +126,7 @@ function Cart() {
                 </svg>
               </button>
               <span>{product.quantity}</span>
-              <button>
+              <button onClick={ ()=> increaseQuantity(product.details._id)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={16}
@@ -129,16 +147,9 @@ function Cart() {
             <div className="subtotal"> ${product.details.Price * product.quantity}</div>
             </div>
               )):(<h2> The Cart Is Empty</h2>)}
-
-
-
               
-
-
-
-
-
             </div>
+            
             <div className="cart-summary">
               <h2>Cart summary</h2>
               <div className="summery-items">
@@ -174,7 +185,10 @@ function Cart() {
               </div>
             </div>
           </div>
+          <div className={`clearCart`}><button onClick={ ()=> clearCart()} type='submit' className=''>Clear Cart</button></div>
+          
           <div className="row">
+          
             <h2>Have a coupon ?</h2>
             <p>Add your code for an instant cart discount</p>
             <div className="coupon-form">

@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Input({type="text", name , id , title , value , onchange , errors , onblur , touched , className}) {
-    
+
     
   return (
     <>
