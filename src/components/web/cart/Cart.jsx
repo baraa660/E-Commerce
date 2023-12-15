@@ -3,6 +3,7 @@ import './Cart.css'
 import { cartcontext } from '../context/Cart.jsx'
 import { useQuery } from 'react-query';
 import Loader from '../../Loader.jsx';
+import { Link } from 'react-router-dom';
 
 
 
@@ -28,6 +29,17 @@ function Cart() {
     if (isLoading) {
       return <Loader/>;
     }
+
+    const calculateTotalPrice = (quantity, price) => {
+      return quantity * price;
+    };
+  
+    // Function to calculate the total order price for all products in the cart
+    const calculateTotalOrderPrice = () => {
+      return data.products.reduce((total, product) => {
+        return total + calculateTotalPrice(product.quantity, product.details.price);
+      }, 0);
+    };
   return (
     <div className="cart">
       <div className="container">
@@ -150,14 +162,14 @@ function Cart() {
                 </div>
                 <div className="summary-footer">
                   <label>Subtotal</label>
-                  <span>$1234.00</span>
+                  <span>${calculateTotalOrderPrice()}</span>
                 </div>
                 <div className="summary-footer">
                   <label className="total">Total</label>
-                  <span>$1345.00</span>
+                  <span>${calculateTotalOrderPrice()}</span>
                 </div>
                 <div className="checkout">
-                  <a href="#">Chekout</a>
+                  <Link to='/Checkout'>Chekout</Link>
                 </div>
               </div>
             </div>

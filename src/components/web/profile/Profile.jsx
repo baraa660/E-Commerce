@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/User.jsx';
 import './Profile.css'
+import Loader from '../../Loader.jsx';
+
+
 
 function Profile() {
 
-    let {userData} = useContext(UserContext);
+    let {userData , Loading} = useContext(UserContext);
 
     const [showDetails, setShowDetails] = useState(false);
 
@@ -13,6 +16,11 @@ function Profile() {
     const handleDetailsClick = () => {
         setShowDetails(!showDetails);
       };
+
+      if(Loading){
+        return <Loader/>
+      }
+
   return (
     <div className="profile-container">
     <img src={userData?.image.secure_url} alt="Profile" className="profile-image" />

@@ -27,3 +27,9 @@ export const ForgotPasswordSchema= yup.object({
   code:yup.string().required("Code required").min(4,"must be 4 char").max(4,"must be 4 char"),
 }) 
 
+export const CheckoutSchemaSchema= yup.object({
+  address:yup.string().required("address is required"),
+  phone:yup.string().required("phone required"),
+}) 
+
+

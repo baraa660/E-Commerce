@@ -16,6 +16,7 @@ import Auth from '../components/web/ProtectedRoute/Auth.jsx';
 import SendCode from '../components/web/forgotPassword/SendCode.jsx';
 import ForgotPassword from '../components/web/forgotPassword/ForgotPassword.jsx';
 import Profile from '../components/web/profile/Profile.jsx';
+import Checkout from '../components/web/order/Chekout.jsx';
 
 
 
@@ -101,6 +102,11 @@ import Profile from '../components/web/profile/Profile.jsx';
             path:'profile',
             element:<Profile/>
         },
+        {
+            path:'checkout',
+            element:<Checkout/>
+        },
+
         {
             path:'*',
             element:<h2>404 page not found --user  </h2>
