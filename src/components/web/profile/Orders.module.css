@@ -1,0 +1,50 @@
+/* Orders.module.css */
+
+.order-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .order-container h3 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .order-container p {
+    margin: 8px 0;
+  }
+  
+  .order-container ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: item;
+  }
+  
+  .order-container li {
+    counter-increment: item;
+    margin-bottom: 10px;
+  }
+  
+  .order-container li::before {
+    content: counter(item);
+    color: #333;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .order-container button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .order-container button:hover {
+    background-color: #c82333;
+  }

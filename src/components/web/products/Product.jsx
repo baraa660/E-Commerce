@@ -25,7 +25,6 @@ function Product() {
 
     const addToCart = async(productId)=>{
       const res = await addToCartContext(productId);
-      
     }
 
       

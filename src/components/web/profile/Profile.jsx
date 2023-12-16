@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/User.jsx';
 import './Profile.css'
 import Loader from '../../Loader.jsx';
+import { Link, Outlet } from 'react-router-dom';
+import styles from './profile.module.css'
 
 
 
@@ -21,28 +23,25 @@ function Profile() {
         return <Loader/>
       }
 
+
+
   return (
-    <div className="profile-container">
-    <img src={userData?.image.secure_url} alt="Profile" className="profile-image" />
-    <div className="profile-details">
-      <h2>Name: {userData?.userName}</h2>
-      <p>Email: {userData?.email}</p>
+    <>
+      <aside className={styles["profile"]}>
+        <div className={styles["ProfileLinks"]}>
+          <nav>
+            <Link to="info">info</Link>
+            <Link to="contact">contact</Link>
+            <Link to="orders">orders details</Link>
+          </nav>
+        </div>
 
-      {showDetails && (
-          <>
-            <p>Role: {userData.role}</p>
-            <p>Status: {userData.status}</p>
-            <p>Account Created At: {new Date(userData.createdAt).toLocaleString()}</p>
-            <p>confirmEmail: {userData.confirmEmail?<span className="text-primary">Confirmed</span> : <span className="text-danger">Not Confirmed</span>}</p>
-          </>
-        )}
-
-        <button className="details-button" onClick={handleDetailsClick}>
-          {showDetails ? 'Hide Details' : 'Show Details'}
-        </button>
-    </div>
-  </div>
-  )
+        <div className={styles["userData"]}>
+          <Outlet />
+        </div>
+      </aside>
+    </>
+  );
 }
 
 export default Profile

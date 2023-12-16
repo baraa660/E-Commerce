@@ -17,6 +17,9 @@ import SendCode from '../components/web/forgotPassword/SendCode.jsx';
 import ForgotPassword from '../components/web/forgotPassword/ForgotPassword.jsx';
 import Profile from '../components/web/profile/Profile.jsx';
 import Checkout from '../components/web/order/Chekout.jsx';
+import UserInfo from '../components/web/profile/UserInfo.jsx';
+import UserContact from '../components/web/profile/UserContact.jsx';
+import Orders from '../components/web/profile/Orders.jsx';
 
 
 
@@ -100,7 +103,29 @@ import Checkout from '../components/web/order/Chekout.jsx';
         },
         {
             path:'profile',
-            element:<Profile/>
+            element:
+            <ProtectedRoute>
+                <Profile/>
+            </ProtectedRoute>
+            ,
+            children:[
+                {
+                    index:true , // its the same of  //  path:'/',
+                    element:<UserInfo/>
+                },
+                {
+                    path:'info',
+                    element:<UserInfo/>
+                },
+                {
+                    path:'contact',
+                    element:<UserContact/>
+                },
+                {
+                    path:'orders',
+                    element:<Orders/>
+                }
+            ]
         },
         {
             path:'checkout',

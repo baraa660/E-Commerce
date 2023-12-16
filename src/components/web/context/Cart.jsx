@@ -31,7 +31,16 @@ export function CartContextProvider({children}){
             return data
         }
         catch(error){
-            console.log(error);
+            toast.error('product already added to Cart!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
 
     }
@@ -48,14 +57,14 @@ export function CartContextProvider({children}){
         catch(error){
             
             console.log(`the error is: ${error}`);
-            
+
         }
     }
 
     
 
     const removeItemContext= async(productId)=>{
-        console.log(productId)
+
         try{
             const token = localStorage.getItem("userToken")
             const {data}= await axios.patch(`${import.meta.env.VITE_API_URL}/cart/removeItem`,{productId}

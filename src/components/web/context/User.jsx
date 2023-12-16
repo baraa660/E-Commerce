@@ -22,11 +22,25 @@ import { createContext, useEffect, useState } from "react";
         }
     }
 
+    const getOrdersContext = async()=>{
+        try {
+          const token = localStorage.getItem("userToken");
+          const { data } = await axios.get(
+            `${import.meta.env.VITE_API_URL}/order`,
+            { headers: { Authorization: `Tariq__${token}` } }
+          );
+
+          return data;
+        } catch (error) {
+          console.log(`the error is: ${error}`);
+        }
+    }
+
     useEffect(()=>{
         getUserData()  
     },[userToken])
     
-    return <UserContext.Provider value={{userToken , setUserToken , userData , setUserData, Loading}}>
+    return <UserContext.Provider value={{userToken , setUserToken , userData , setUserData, Loading ,getOrdersContext}}>
         {children}
     </UserContext.Provider>
  }
