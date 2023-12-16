@@ -3,7 +3,7 @@ import { UserContext } from '../context/User.jsx';
 import './Profile.css'
 import Loader from '../../Loader.jsx';
 import { Link, Outlet } from 'react-router-dom';
-import styles from './profile.module.css'
+import styles from './Profile.module.css'
 
 
 
