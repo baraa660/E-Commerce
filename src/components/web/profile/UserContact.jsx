@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../context/User.jsx';
 import Loader from '../../Loader.jsx';
-import styles from './profile.module.css'
+import styles from './Profile.module.css'
 
 export default function UserContact() {
     let {userData , Loading} = useContext(UserContext);
