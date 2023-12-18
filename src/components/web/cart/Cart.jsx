@@ -214,7 +214,7 @@ function Cart() {
                 </div>
                 
                 <div className="checkout" >
-                  <Link  to='/Checkout'  style={localData?.products.length == 0 ? { pointerEvents: 'none', color: 'gray' } : {}}>Chekout</Link>
+                  <Link  to='/Checkout'  style={data?.products.length == 0 ? { pointerEvents: 'none', color: 'gray' } : {}}>Chekout</Link>
                 </div>
               </div>
             </div>
