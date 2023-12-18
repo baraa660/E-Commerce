@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Cart.css'
 import { cartcontext } from '../context/Cart.jsx'
 import { useQuery } from 'react-query';
@@ -13,32 +13,64 @@ function Cart() {
     const {getCardContext,removeItemContext,increaseQuantityContext,
       decreaseQuantityContext,clearCartContext} = useContext(cartcontext);
 
+      const [localData, setLocalData] = useState();
+
     const getCard = async () => {
       const res = getCardContext();
+
+    //  // all this code because res there is wrapped in Promise because getCardContext() is async 
+    //  // and that seems async funcion dont return data directly and return it wrapped  
+     
+      // res.then(result => {
+    //   // Access the 'products' array from the fulfilled Promise result
+      //   const productsArray = result;
+      //   setLocalData(productsArray);
+      // })
+      // .catch(error => {
+    //   // Handle any errors that occurred during the Promise execution
+      //   console.error('Error:', error);
+      // });
+
       
       return res;
     };
 
-    const removeItem = async (productId)=>{
-        const res = removeItemContext(productId);
-        return res;
-    }
+    
 
-    const { data,isLoading} = useQuery("cart", getCard);
+
+    const { data ,isLoading , refetch} = useQuery("cart", getCard);//i got the cart using useEffect insted of useQuery because it takes long time 
+
+    useEffect(()=>{
+      getCard();       
+  },[])
+
+
+  const removeItem = async (productId)=>{
+     removeItemContext(productId) 
+     .then(() => refetch())                                       //this make the data change fastly
+    .catch(error => console.error('Error removing Item:', error));//
+}
+ 
+
 
     const increaseQuantity = async(productId)=>{
-      const res = increaseQuantityContext(productId);
-      return res;
+      increaseQuantityContext(productId)
+      .then(() => refetch())
+      .catch(error => console.error('Error increasing Quantity:', error));
+      
     }
 
     const decreaseQuantity = async(productId)=>{
-      const res = decreaseQuantityContext(productId);
-      return res;
+      decreaseQuantityContext(productId)
+      .then(() => refetch())
+    .catch(error => console.error('Error decreasing Quantity:', error));
+      
     }
 
     const clearCart = async()=>{
-      const res = clearCartContext();
-      return res;
+      clearCartContext()
+    .then(() => refetch())
+    .catch(error => console.error('Error clearing cart:', error));
     }
     
 
@@ -52,7 +84,7 @@ function Cart() {
   
     // Function to calculate the total order price for all products in the cart
     const calculateTotalOrderPrice = () => {
-      return data.products.reduce((total, product) => {
+      return data?.products.reduce((total, product) => {
         return total + calculateTotalPrice(product.quantity, product.details.price);
       }, 0);
     };
@@ -79,9 +111,9 @@ function Cart() {
                 </div>
               </div>
 
-
-
-              {data?.products.length ? (data.products.map((product)=>
+              
+              
+              {data?.products?.length ? (data?.products.map((product)=>
                 <div className="item" key={product._id}>
             <div className="product-info">
               <img src={product.details.mainImage.secure_url} />
@@ -144,7 +176,8 @@ function Cart() {
               </button>
             </div>
             <div className="price">${product.details.price}</div>
-            <div className="subtotal"> ${product.details.Price * product.quantity}</div>
+
+            <div className="subtotal"> ${product.details.price * product.quantity}</div>
             </div>
               )):(<h2> The Cart Is Empty</h2>)}
               
@@ -179,8 +212,9 @@ function Cart() {
                   <label className="total">Total</label>
                   <span>${calculateTotalOrderPrice()}</span>
                 </div>
-                <div className="checkout">
-                  <Link to='/Checkout'>Chekout</Link>
+                
+                <div className="checkout" >
+                  <Link  to='/Checkout'  style={localData?.products.length == 0 ? { pointerEvents: 'none', color: 'gray' } : {}}>Chekout</Link>
                 </div>
               </div>
             </div>
