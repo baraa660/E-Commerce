@@ -91,7 +91,8 @@ function Cart() {
 
 
   return (
-    <div className="cart">
+    <div className='Mcart'>
+      <div className="cart">
       <div className="container">
         <div className="row">
           <div className="cart-items">
@@ -140,7 +141,9 @@ function Cart() {
               </div>
             </div>
             <div className="quantity">
-              <button onClick={ ()=> decreaseQuantity(product.details._id)}>
+              <button onClick={ ()=> decreaseQuantity(product.details._id)}
+              style={product.quantity == 1 ? { pointerEvents: 'none', color: 'gray' } : {}}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={16}
@@ -244,6 +247,7 @@ function Cart() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

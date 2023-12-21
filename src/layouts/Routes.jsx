@@ -20,6 +20,7 @@ import Checkout from '../components/web/order/Chekout.jsx';
 import UserInfo from '../components/web/profile/UserInfo.jsx';
 import UserContact from '../components/web/profile/UserContact.jsx';
 import Orders from '../components/web/profile/Orders.jsx';
+import AllProducts from '../components/web/products/AllProducts.jsx';
 
 
 
@@ -100,6 +101,10 @@ import Orders from '../components/web/profile/Orders.jsx';
         {
             path:'product/:productId',
             element:<Product/>
+        },
+        {
+            path:'products',
+            element:<AllProducts/>
         },
         {
             path:'profile',

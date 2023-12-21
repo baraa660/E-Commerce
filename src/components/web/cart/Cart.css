@@ -2,20 +2,20 @@ body{
     background-color: #fff !important;
 }
 
-.cart{
+ .cart{
     padding:20px 0 60px 0;
 
 
 }
 
 
-.cart-items{
+ .cart-items{
     display: flex;
     padding:40px 0;
 
 
 }
-.cart-header{
+ .cart-header{
     display: flex;
     justify-content: space-around;
     gap:50px;
@@ -49,7 +49,7 @@ body{
     align-items: center;
     gap: 41px;
 }
-.products .product-info{
+ .products .product-info{
     flex-grow: 1;
     display: flex;
     gap:16px;
@@ -59,7 +59,7 @@ body{
 
 
 
-.product-item {
+ .product-item {
     display: flex;
     gap:50px;
     justify-content: space-between;
@@ -107,11 +107,11 @@ font-size:20px;
     width:120px;
     min-width: 120px;
 }
-.products button{
+.cart .products button{
     background-color: #fff;
     border:0;
 }
-.products input{
+.cart .products input{
     border:0;
     width:10%;
 }

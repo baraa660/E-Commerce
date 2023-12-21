@@ -20,6 +20,21 @@ export const sendCodeSchema= yup.object({
   
 }) 
 
+export const priceSchema= yup.object({
+  
+  minPrice:yup.number(),
+  maxPrice:yup.number(),
+  
+}) 
+
+export const searchSchema= yup.object({
+  
+  search:yup.string(),
+  
+}) 
+
+
+
 export const ForgotPasswordSchema= yup.object({
   
   email:yup.string().required("email is required").email(),

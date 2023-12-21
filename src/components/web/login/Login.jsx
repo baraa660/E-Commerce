@@ -128,7 +128,7 @@ function Login() {
   */}
 
 
- <div className="wrapper fadeInDown register-form">
+ <div className="wrapper fadeInDown login-form">
   <div id="formContent" className="">
     {/* Tabs Titles */}
     {/* Icon */}

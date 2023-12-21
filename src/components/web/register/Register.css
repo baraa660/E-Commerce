@@ -74,7 +74,7 @@
   
   /* FORM TYPOGRAPHY*/
   
-  .register-form input[type=button], input[type=submit], input[type=reset]  {
+  .register-form input[type=button], .register-form input[type=submit],.register-form input[type=reset]  {
     background-color: #56baed;
     border: none ;
     color: white;
