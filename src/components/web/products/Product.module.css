@@ -1,0 +1,137 @@
+.product-details {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 30px;
+    border-radius: 5px;
+  }
+  
+  .product-details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .product-details p {
+    margin-bottom: 10px;
+  }
+  
+  .product-details img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .product-details .left-content{
+    display: flex;
+    justify-content:center;
+  }
+  
+  /* Styling for main product image */
+  .product-details .main-image {
+    width: 60%;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for subimages */
+  .product-details .sub-images {
+    margin-right: 20px;
+    gap: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  
+  .product-details .sub-images img {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .product-details .sub-images img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Styling for the right side content */
+  .product-details .right-content {
+    flex-grow: 1;
+    max-width: calc(60% - 20px); /* Adjust the width as needed */
+  }
+  
+  .product-details .reviews {
+    margin-top: 20px;
+  }
+  
+  .product-details .reviews ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .product-details .reviews li {
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive styling for small screens */
+  @media (max-width: 768px) {
+    .product-details {
+      flex-direction: column;
+    }
+  
+    .product-details .sub-images {
+      margin-top: 20px;
+    }
+  }
+
+  .header{
+    border-bottom: 1px solid #838383;
+    margin-bottom: 30px;
+  }
+  .product-price{
+    font-weight: bold;
+    color: #d40000;
+  }
+
+  .product-final-price{
+    font-weight: bold;
+  }
+
+  .description{
+    border-bottom: 1px solid #838383;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+
+
+  .commenter-img {
+    width: 35px;
+  }
+
+  .commenter-img img{
+    width: 35px;
+    height: 35px;
+  }
+
+  .commenter-details{
+    background-color: #ececec;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-top: 6px;
+    padding-bottom: 1px;
+    border-radius: 15px;
+  }
+
+  .review-card{
+    margin: 10px 5px 10px 5px;
+  }
+
+  .comment-date{
+    margin: 0;
+    color: #838383;
+  }

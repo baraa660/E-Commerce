@@ -196,17 +196,43 @@ export default function AllProducts() {
     <div className="products">
       <div className={styles.displaySortContainer}>
       <div>
-      <div>Display</div>
-      <select onChange={() => handleNumOfElements(event.target.value)} name="numOfElements" id="numOfElements">
-        <option value="">default</option>
-        <option value="4">4</option>
-        <option value="2">2</option>
-      </select>
+      <div className='text-center'>Display</div>
+      <select
+  onChange={(event) => handleNumOfElements(event.target.value)}
+  name="numOfElements"
+  id="numOfElements"
+  style={{
+    padding: '5px',
+    fontSize: '16px',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+    cursor: 'pointer',
+    backgroundColor: '#fff',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    transition: 'border-color 0.3s ease-in-out',
+  }}
+>
+  <option value="">default</option>
+  <option value="4">4</option>
+  <option value="2">2</option>
+</select>
+
+
       </div>
 
       <div>
-      <div>Sort By</div>
-      <select onChange={() => handleSort(event.target.value)} name="sort" id="sort">
+      <div className='text-center'>Sort By</div>
+      <select onChange={() => handleSort(event.target.value)} name="sort" id="sort"
+      style={{
+        padding: '5px',
+        fontSize: '16px',
+        borderRadius: '5px',
+        border: '1px solid #ccc',
+        cursor: 'pointer',
+        backgroundColor: '#fff',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        transition: 'border-color 0.3s ease-in-out',
+      }}>
         <option value="">default</option>
         <option value="price">price</option>
         <option value="-price">-price</option>
