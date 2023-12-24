@@ -90,7 +90,7 @@ export default function AllProducts() {
 
 
       setData(response.data.products);
-      console.log(data)
+      
       setTotal(response.data.total)
       setIsLoading(false);
     } catch (error) {
@@ -148,6 +148,47 @@ export default function AllProducts() {
 
   }
 
+  const nextPage =()=>{
+
+    //to check if im in the last page so i can't go next 
+    let totalPages=null;
+    if(limit){
+       totalPages = Math.ceil(total / limit);
+    }
+    else{
+       totalPages = Math.ceil(total / 4);
+    }
+    if(page>=totalPages){
+    } else{
+      const currentParams = new URLSearchParams(window.location.search);
+    // Update the 'page' parameter
+    let nextPage=parseInt(page?page:1)+1;
+    currentParams.set('page', nextPage);
+    // Build the new URL with updated query parameters
+    const newUrl = `${window.location.pathname}?${currentParams.toString()}`;
+    console.log(newUrl);
+    // Use the navigate function to update the URL
+    navigate(newUrl);
+    }
+  }
+
+  const previousPage=()=>{
+    //to check if iam in the first page so i can't go previous 
+    if(page<=1){
+
+    } else{
+      const currentParams = new URLSearchParams(window.location.search);
+    // Update the 'page' parameter
+    let prevPage=parseInt(page?page:1)-1;
+    currentParams.set('page', prevPage);
+    // Build the new URL with updated query parameters
+    const newUrl = `${window.location.pathname}?${currentParams.toString()}`;
+    console.log(newUrl);
+    // Use the navigate function to update the URL
+    navigate(newUrl);
+    }
+  }
+
   const handleSort=(value)=>{
     // Get the current query parameters
     const currentParams = new URLSearchParams(window.location.search);
@@ -158,13 +199,10 @@ export default function AllProducts() {
 
     // Use the navigate function to update the URL
     navigate(newUrl);
-    
-    
 }
 
 
   const renderPagenaionLinks = () => {
-    console.log(limit);
     let totalPages=null;
     if(limit){
        totalPages = Math.ceil(total / limit);
@@ -340,15 +378,15 @@ export default function AllProducts() {
       <nav className='d-flex justify-content-center' aria-label="Page navigation example">
         <ul className="pagination">
           <li className="page-item">
-            <a className="page-link" href="#" >
+            <Link className="page-link" onClick={previousPage} >
               Previous
-            </a>
+            </Link>
           </li>
           {renderPagenaionLinks()}
           <li className="page-item">
-            <a className="page-link" href="#">
+            <Link className="page-link"  onClick={nextPage}>
               Next
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

@@ -48,3 +48,11 @@ export const CheckoutSchemaSchema= yup.object({
 }) 
 
 
+
+export const addReviewSchema= yup.object({
+  
+  comment:yup.string().required("comment is required"),
+  rating:yup.number().required("rating is required"),
+  
+}) 
+

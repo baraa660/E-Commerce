@@ -24,10 +24,7 @@
     margin-bottom: 10px;
   }
 
-  .product-details .left-content{
-    display: flex;
-    justify-content:center;
-  }
+  
   
   /* Styling for main product image */
   .product-details .main-image {
@@ -108,7 +105,15 @@
     padding-bottom: 30px;
   }
 
+  .images{
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    
+    
+  }
 
+ /*reviews */
   .commenter-img {
     width: 35px;
   }
@@ -135,3 +140,56 @@
     margin: 0;
     color: #838383;
   }
+
+  .reviews-container{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+  }
+
+  /* ReviewForm.module.css */
+
+.formContainer {
+  
+  max-width: 650px;
+  margin: 0 auto;
+  
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.starsContainer {
+  margin-bottom: 16px;
+}
+
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
