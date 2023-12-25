@@ -1,13 +1,15 @@
 
 .displaySortContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: rgb(224, 224, 224); /* Adjust as needed */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(251 251 251) !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%) !important;
+  border-bottom: 1px solid #8b8b8b;
+  margin-bottom: 5px;
   }
   
   .form {
@@ -75,6 +77,7 @@
   }
   
   .product-card {
+    position: relative;
     width: 290px;
     border: 1px solid #ccc;
     background-color: #fff;
@@ -92,6 +95,13 @@
     &:hover {
       transform: scale(1.05);
     }
+  }
+
+  .discount-icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-30%,-30%);
   }
   
   .product-link {
