@@ -65,6 +65,12 @@
 
 /*-------------------------------------------------------------------------------------------------*/
 
+.discount-icon{
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-30%,-30%);
+}
 
 .product-list {
     display: flex;
@@ -75,6 +81,7 @@
   }
   
   .product-card {
+    position: relative;
     width: 290px;
     border: 1px solid #ccc;
     background-color: #fff;
@@ -103,6 +110,8 @@
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    width: 200px;
+    height: 200px;
   }
   
   .product-name {

@@ -1,0 +1,17 @@
+.nav-profile-img{
+    border-radius: 50%;
+    width: 45px;
+    height: 40px;
+    border: 1px rgba(107, 37, 37, 0.548) solid;
+}
+
+.drop-down-img{
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: red !important;
+
+}
+
+.website-logo{
+    height: 35px;
+}

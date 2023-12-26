@@ -1,16 +1,24 @@
-img{
+.mySwiper{
+    padding: 50px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 30px;
+    margin: 20px 0px;
+    box-shadow: 0 0 20px rgb(255 0 0 / 16%);
+}
+
+
+.mySwiper img{
     width: 100px;
     height: 100px;
     
 }
 
-.swiper{
-    padding: 50px;
-}
+
 
 .swiper-button-prev , .swiper-button-next{
     
-    background-color: #fff;
+    background-color: #dfa5a5;
     color: #000 !important;
     width: 40px !important;
     height: 40px !important;
@@ -32,9 +40,9 @@ img{
 
 .swiper-custom-pagination{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 .category{
@@ -50,3 +58,15 @@ img{
 .swiper-button-next, .swiper-rtl .swiper-button-prev{
     right: 10px;
 }
+
+
+
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background-color: #000;
+    color: #fff !important;
+  }
+
+  .height-169{
+    height: 169px;
+  }

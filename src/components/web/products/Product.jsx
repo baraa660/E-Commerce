@@ -25,7 +25,6 @@ function Product() {
 
   const onSubmit= async review => {
     setErrorBack('');
-    console.log(review)
     try{
       const token = localStorage.getItem("userToken");
       const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/products/${productId}/review`,review,
@@ -42,13 +41,14 @@ function Product() {
             progress: undefined,
             theme: "light",
             })
+            
     }
      
   }catch(error){
     
       // This callback is executed after the state is updated
       
-      setErrorBack(error.response.data.message, () => {
+      setErrorBack(error?.response.data.message, () => {
         // This callback is executed after the state is updated
         console.log(errorBack);
       });
@@ -72,6 +72,7 @@ function Product() {
     }
 
     const {data, isLoading,}= useQuery('product', getproduct)
+    
     
     const getCard = async () => {
       const res = getCardContext();
@@ -103,7 +104,6 @@ function Product() {
     }
 
     const ratingChanged = (newRating) => {
-      console.log(newRating);
     };
       
   return (

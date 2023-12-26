@@ -64,7 +64,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 20px;
+    padding:110px 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

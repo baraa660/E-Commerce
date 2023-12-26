@@ -140,7 +140,7 @@ export default function AllProducts() {
     currentParams.set('page', value);
     // Build the new URL with updated query parameters
     const newUrl = `${window.location.pathname}?${currentParams.toString()}`;
-    console.log(newUrl);
+    
     // Use the navigate function to update the URL
     navigate(newUrl);
     
@@ -166,7 +166,7 @@ export default function AllProducts() {
     currentParams.set('page', nextPage);
     // Build the new URL with updated query parameters
     const newUrl = `${window.location.pathname}?${currentParams.toString()}`;
-    console.log(newUrl);
+    
     // Use the navigate function to update the URL
     navigate(newUrl);
     }
@@ -183,7 +183,7 @@ export default function AllProducts() {
     currentParams.set('page', prevPage);
     // Build the new URL with updated query parameters
     const newUrl = `${window.location.pathname}?${currentParams.toString()}`;
-    console.log(newUrl);
+    
     // Use the navigate function to update the URL
     navigate(newUrl);
     }
@@ -362,9 +362,6 @@ export default function AllProducts() {
 </svg>
         </div> : <></>}
         
-
-
-
         <Link to={`/product/${product._id}`} className={styles['product-link']}>
           <div><img src={product.mainImage.secure_url} alt={product.name} className={styles['product-image']} /></div>
           <div><h2 className={styles['product-name']}>{product.name}</h2></div>

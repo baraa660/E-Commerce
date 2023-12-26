@@ -4,11 +4,14 @@ import { UserContext } from '../context/User.jsx';
 import { cartcontext } from '../context/Cart.jsx';
 import { useQuery } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import  styles  from './Navbar.module.css';
 
 export default function Navbar() {
 
+
+
   let {userToken,setUserToken,userData,setUserData}= useContext(UserContext);
+
 
   const { getCardContext} = useContext(cartcontext);
 
@@ -33,9 +36,9 @@ export default function Navbar() {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
-          <a className="navbar-brand" href="#">
-            B-shop
-          </a>
+          <Link className="navbar-brand" to='/'>
+            <img className={styles['website-logo']} src="/bLogo3.png" alt="page logo" />
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -56,9 +59,9 @@ export default function Navbar() {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to='/categories'>
                   Categories
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
@@ -100,13 +103,13 @@ export default function Navbar() {
             <ul className="navbar-nav">
               <li className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="drop-down-img nav-link dropdown-toggle"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {userData != null ? userData.userName : "Account"}
+                  {userData != null ? <img className={styles['nav-profile-img']} src={userData?.image.secure_url} alt="" /> : "Account"}
                 </a>
                 <ul className="dropdown-menu ">
                   {!userToken ? (

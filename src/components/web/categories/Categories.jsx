@@ -34,7 +34,8 @@ export default function Categories() {
 
   return (
     <div className='container'>
-    <div className='swiper-custom-pagination'></div>
+    
+<div className='mySwiper'>
 <Swiper
       modules={[Navigation, Pagination,Autoplay]}
       spaceBetween={50}
@@ -63,6 +64,11 @@ export default function Categories() {
     }
     
     </Swiper>
+    <div className='swiper-custom-pagination'></div>
+</div>
+<div className='height-169'>
+  
+</div>
     </div>
   )
 }
