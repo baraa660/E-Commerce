@@ -181,7 +181,7 @@ textarea {
   border-radius: 4px;
 }
 
-button {
+.product-details button {
   background-color: #4caf50;
   color: #fff;
   padding: 10px 20px;
@@ -190,6 +190,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.product-details button:hover {
   background-color: #45a049;
 }

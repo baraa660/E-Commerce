@@ -1,78 +1,63 @@
-import { useFormik } from 'formik';
-import React, { useState } from 'react'
-import Input from '../../pages/Input.jsx';
-import { sendCodeSchema } from '../validation/Validate.js';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+// SendCode.jsx
 
+import React, { useState } from 'react';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { sendCodeSchema } from '../validation/Validate.js';
+import styles from './SendCode.module.css';
 
 export default function SendCode() {
+  const navigate = useNavigate();
 
-   const navigate = useNavigate() 
-
-    const initialValues = {
-      email: "",
-    };
-
-    const onSubmit=async users => {
-    
-    
-      setErrorBack('');
-      
-      try{
-  
-      const {data} = await axios.patch(`${import.meta.env.VITE_API_URL}/auth/sendcode`,users)
-  
-      
-
-      navigate("/forgotpassword");
-     
-  }catch(error){
-    setErrorBack(error.response.data.message, () => {
-      // This callback is executed after the state is updated
-      console.log(errorBack);
-    });
-  }
-  
+  const initialValues = {
+    email: '',
   };
 
-    let [errorBack,setErrorBack]=useState('');
+  const onSubmit = async (users) => {
+    setErrorBack('');
 
-    const formik = useFormik({
-        initialValues,//shortcut of : initialValues:initialValues,
+    try {
+      const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/auth/sendcode`, users);
 
-        onSubmit,  //shortcut of : onSubmit:onSubmit,
-        validationSchema:sendCodeSchema,
-      });
+      navigate('/forgotpassword');
+    } catch (error) {
+      setErrorBack(error.response.data.message);
+    }
+  };
 
-      
+  let [errorBack, setErrorBack] = useState('');
 
-      
-
-      
-
-
-
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema: sendCodeSchema,
+  });
 
   return (
-    <>
-     <p>Enter your email, will send a confirmation code to this email</p> 
+    <div className={styles.container}>
+      <p className={styles.heading}>Enter your email, will send a confirmation code to this email</p>
 
-     <form onSubmit={formik.handleSubmit} >
+      <form onSubmit={formik.handleSubmit} className={styles.form}>
+        <div className={styles.inputContainer}>
+          <input
+            className={styles.input}
+            placeholder="User email"
+            type="email"
+            name="email"
+            id="email"
+            value={formik.values.email}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+          />
+          <div className={styles.error}>{formik.touched && formik.errors.email && <p className={styles.errorMessage}>{formik.errors.email}</p>}</div>
+        </div>
 
-     <div className=''>
-        
-        <input className={`ms-3 w-25`} placeholder='user email' type='email' 
-        name='email' id='email' value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange}/>
-        <div className='ms-4 text-align: start'>{formik.touched&&formik.errors.email&&<p className='text text-danger'>{formik.errors.email}</p>}</div>
-      </div>
-
-
-    {errorBack&&<p className='text text-danger text-center mt-3'>{errorBack}</p>}
-    <div className="py-10 px-40"><input type="submit" className=""  value="Send Code" /></div>
-
-    </form>
-    </>
-  )
+        {errorBack && <p className={styles.error}>{errorBack}</p>}
+        <div className={styles.buttonContainer}>
+          <input type="submit" className={styles.submitButton} value="Send Code" />
+        </div>
+      </form>
+    </div>
+  );
 }

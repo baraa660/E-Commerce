@@ -39,7 +39,7 @@ function Login() {
 
         toast.success('Login Successfully', {
             position: "top-center",
-            autoClose: false,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,

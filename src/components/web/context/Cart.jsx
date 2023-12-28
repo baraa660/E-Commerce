@@ -18,7 +18,7 @@ export function CartContextProvider({children}){
             if(data.message=='success'){
                 toast.success('product added Successfully', {
                     position: "top-center",
-                    autoClose: false,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,

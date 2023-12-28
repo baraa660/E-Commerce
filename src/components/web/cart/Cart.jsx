@@ -96,8 +96,12 @@ function Cart() {
       <div className="container">
         <div className="row">
           <div className="cart-items">
+
+            
+            
             <div className="products" id="products">
-              <div className="item">
+            {data?.products?.length ?<><div className="item">
+                
                 <div className="product-info">
                   <h2>Product</h2>
                 </div>
@@ -114,7 +118,7 @@ function Cart() {
 
               
               
-              {data?.products?.length ? (data?.products.map((product)=>
+              { (data?.products.map((product)=>
                 <div className="item" key={product._id}>
             <div className="product-info">
               <img src={product.details.mainImage.secure_url} />
@@ -182,10 +186,10 @@ function Cart() {
 
             <div className="subtotal"> ${product.details.price * product.quantity}</div>
             </div>
-              )):(<h2> The Cart Is Empty</h2>)}
+              ))}</>: <h2 className='text-center mt-4'>The Cart is Empty</h2>}
+              
               
             </div>
-            
             <div className="cart-summary">
               <h2>Cart summary</h2>
               <div className="summery-items">

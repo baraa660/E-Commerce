@@ -55,6 +55,7 @@ body{
     margin-right: 30px;
     box-shadow: 0 0 20px rgba(238, 0, 0, 0.199);
     margin-top: 47px;
+    max-width: 750px;
 }
 .cart .products .item{
     display: flex;
