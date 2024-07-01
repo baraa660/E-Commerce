@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { Link, useNavigate } from 'react-router-dom'
 import Loader from '../../Loader.jsx'
@@ -226,8 +226,15 @@ export default function AllProducts() {
     return links;
   };
 
+  
+
   const resetinputs =()=>{
     navigate('')
+
+    formik2.resetForm();
+    formik.resetForm();
+    
+    
   }
 
   return (
@@ -265,6 +272,7 @@ export default function AllProducts() {
         padding: '5px',
         fontSize: '16px',
         borderRadius: '5px',
+        
         border: '1px solid #ccc',
         cursor: 'pointer',
         backgroundColor: '#fff',
